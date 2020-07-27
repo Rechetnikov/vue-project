@@ -2,20 +2,14 @@
   <div>
     <h2>Form inputs</h2>
 
-    <label>
-      <input type="radio" value="instagram" v-model="social" /> Instagram
-    </label><hr />
-
-    <label>
-      <input type="radio" value="vk" v-model="social" /> Vk
-    </label><hr />
-
-    <label>
-      <input type="radio" value="facebook" v-model="social" /> Facebook
-    </label><hr />
-
-    <p>{{social}}</p>
-
+    <select v-model="social">
+      <option 
+        v-for="s of socialList" 
+        v-bind:key="s.id"
+        :selected = "s === defaultSocial"
+      >{{ s }}</option>
+    </select> <hr />
+    {{ social }}
   </div>
 </template>
 
@@ -23,7 +17,9 @@
   export default {
     data(){
       return{
-        social: "vk"
+        defaultSocial: 'Vk',
+        social: 'Vk',
+        socialList: ['Instagram', 'Vk', 'Facebook']
       }
     }
   }
