@@ -1,28 +1,19 @@
 <template>
-  <div>
-    <h2>Form inputs</h2>
-    <app-onoff v-model="switched"></app-onoff>
-    <div>
-      <h3 v-if="switched">Включено</h3>
-      <h3 v-else>Выключено</h3>
-    </div>
+  <div class="container">
+    <form class="pt-3">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control"  />
+        <!-- v-model="email" -->
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
-  import Onoff from './Onoff'
   export default {
-    data(){
-      return{
-        switched: false
-      }
-    },
-    components: {
-      appOnoff: Onoff
-    }
+    // data(){
+    //   email: '123'
+    // }
   }
 </script>
-
-<style scoped>
-
-</style>
