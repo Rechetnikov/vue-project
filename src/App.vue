@@ -10,7 +10,10 @@
       <div class='my-3 w-25' v-if="$v.name.$dirty">
         <div class="alert alert-danger" v-if="!$v.name.required">Field is required</div>
         <div class="alert alert-danger" v-if="!$v.name.email">Invalid email</div>
+        <div class="alert alert-danger" v-if="!$v.name.uniqEmail">Not unique</div>
       </div>      
+      <!-- <pre>{{$v.name}}</pre> -->
+      
     </div>
     <div class="form-group">
       <label class="form_label">Password</label>
@@ -54,7 +57,16 @@
     validations: {
       name: {
         required,
-        email
+        email,
+        uniqEmail: function(newEmail){
+          if (newEmail === '') return true;
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              const value = (newEmail !== "test@mail.ru");
+              resolve(value)
+            }, 2000)
+          })
+        }
       },
       password: {
         required,
