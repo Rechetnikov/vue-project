@@ -16,11 +16,10 @@
     <br />
     <button class="btn btn-sm btn-success mb-2" @click="goCarToBack">Назад</button>
     <br />
-    <!-- :to="'/car/' + id + '/full'" -->
     <router-link
       tag="button"
       class="btn btn-info mt-2"
-      :to="{name: 'carFull', params: {id: id}}"
+      :to="{name: 'carFull', params: {id: id}, query:{name: 'Mazda', year: '2000'}}"
     >Просмотр</router-link>
     <router-view></router-view>
   </div>
