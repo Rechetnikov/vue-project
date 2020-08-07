@@ -3,18 +3,18 @@ import Home from "./pages/Home";
 import Cars from "./pages/Cars";
 import Car from "./pages/Car";
 import CarFull from "./pages/CarFull";
+import ErrorCmp from "./pages/Error";
 
 export default new VueRouter({
   routes: [
     {
       path: "",
       component: Home,
-    },
-    {
+    }, {
       path: "/cars",
       component: Cars,
-    },
-    {
+      name: 'cars'
+    }, {
       path: "/car/:id",
       component: Car,
       children: [
@@ -24,7 +24,15 @@ export default new VueRouter({
           name: 'carFull'
         }
       ]
-    },
+    }, {
+      path: '/none',
+      redirect: {
+        name: 'cars'
+      }
+    }, {
+      path: '*',
+      component: ErrorCmp
+    }
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {
