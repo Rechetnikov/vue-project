@@ -6,8 +6,17 @@
           <router-link tag="li" exact class="nav-item" active-class="active" to="/">
             <a class="nav-link">Home</a>
           </router-link>
+
           <router-link tag="li" class="nav-item" active-class="active" to="/cars">
             <a class="nav-link">Cars</a>
+          </router-link>
+
+          <router-link tag="li" class="nav-item" active-class="active" to="/car/3">
+            <a class="nav-link">Cars 3</a>
+          </router-link>
+
+          <router-link tag="li" class="nav-item" active-class="active" to="/car/4">
+            <a class="nav-link">Cars 4</a>
           </router-link>
         </ul>
       </div>
