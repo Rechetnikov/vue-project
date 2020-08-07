@@ -43,6 +43,15 @@ export default {
       this.id = toR.params["id"];
     },
   },
+  beforeRouteLeave(to, fromR, next) {
+    console.log("beforeRouteLeave");
+    if (window.confirm("Уверены что хотите выйти?")) {
+      next();
+    } else {
+      // next(false);
+      return false;
+    }
+  },
 };
 </script>
 
