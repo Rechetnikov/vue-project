@@ -13,11 +13,26 @@
         <a class="text-success">Car: {{car}}</a>
       </router-link>
     </ul>
+    <br />
+    <button class="btn btn-sm btn-success mb-2" @click="goCarToBack">Назад</button>
+    <br />
+    <!-- :to="'/car/' + id + '/full'" -->
+    <router-link
+      tag="button"
+      class="btn btn-info mt-2"
+      :to="{name: 'carFull', params: {id: id}}"
+    >Просмотр</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    goCarToBack() {
+      this.$router.push("/cars");
+    },
+  },
   data() {
     return {
       // id: this.$router.currentRoute.params["id"],
