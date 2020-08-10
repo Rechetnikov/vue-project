@@ -1,30 +1,78 @@
 <template>
-  <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-          <router-link tag="li" exact class="nav-item" active-class="active" to="/">
-            <a class="nav-link">Home</a>
-          </router-link>
+  <div class="container pt-2">
+    <div class="form-group">
+      <label for="name">Car name</label>
+      <input type="text" id="name" class="form-control" v-model.trim.lazy="carName" />
+    </div>
 
-          <router-link tag="li" class="nav-item" active-class="active" to="/cars">
-            <a class="nav-link">Cars</a>
-          </router-link>
+    <div class="form-group">
+      <label for="year">Car year</label>
+      <input type="text" id="year" class="form-control" v-model.number.lazy="carYear" />
+    </div>
 
-          <router-link tag="li" class="nav-item" active-class="active" to="/car/3">
-            <a class="nav-link">Cars 3</a>
-          </router-link>
+    <button class="btn btn-success" @click="createCar">Отправить</button>
 
-          <router-link tag="li" class="nav-item" active-class="active" to="/car/4">
-            <a class="nav-link">Cars 4</a>
-          </router-link>
-        </ul>
-      </div>
-    </nav>
-    <router-view />
+    <button class="btn btn-primary ml-2" @click="loadCars">Просмотр</button>
+    <hr />
+
+    <ul class="list-group">
+      <li class="list-group-item" v-for="car in cars" :key="car.id">
+        <strong>{{car.name}}</strong>
+        - {{car.year}}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      carName: "",
+      carYear: 2018,
+      cars: [],
+      resource: null,
+    };
+  },
+  methods: {
+    createCar() {
+      const car = {
+        name: this.carName,
+        year: this.carYear,
+      };
+
+      // this.$http
+      //   .post("http://localhost:3000/cars", car)
+      //   .then((response) => {
+      //     return response.json();
+      //   })
+      //   .then((newCar) => {
+      //     console.log(newCar);
+      //   });
+
+      this.resource.save({}, car);
+    },
+    loadCars() {
+      // this.$http
+      //   .get("http://localhost:3000/cars")
+      //   .then((response) => {
+      //     return response.json();
+      //   })
+      //   .then((cars) => {
+      //     this.cars = cars;
+      //   });
+      this.resource
+        .get()
+        .then((response) => {
+          return response.json();
+        })
+        .then((cars) => {
+          this.cars = cars;
+        });
+    },
+  },
+  created() {
+    this.resource = this.$resource("http://localhost:3000/cars");
+  },
+};
 </script>
