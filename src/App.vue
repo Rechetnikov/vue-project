@@ -42,7 +42,7 @@ export default {
       };
 
       // this.$http
-      //   .post("http://localhost:3000/cars", car)
+      //   .post("cars", car)
       //   .then((response) => {
       //     return response.json();
       //   })
@@ -54,7 +54,7 @@ export default {
     },
     loadCars() {
       // this.$http
-      //   .get("http://localhost:3000/cars")
+      //   .get("cars")
       //   .then((response) => {
       //     return response.json();
       //   })
@@ -72,7 +72,7 @@ export default {
     },
   },
   created() {
-    this.resource = this.$resource("http://localhost:3000/cars");
+    this.resource = this.$resource("cars");
   },
 };
 </script>
