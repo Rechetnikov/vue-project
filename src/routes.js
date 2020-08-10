@@ -5,6 +5,25 @@ import Car from "./pages/Car";
 import CarFull from "./pages/CarFull";
 import ErrorCmp from "./pages/Error";
 
+// Куширование роутинга не заработало.
+// import { resolve } from "core-js/fn/promise";
+
+// const Сars = resolve => {
+//   require.ensure(['./pages/Cars'], () => {
+//     resolve(
+//       require('./pages/Cars')
+//     )
+//   })
+// }
+
+// const Сar = resolve => {
+//   require.ensure(['./pages/Car'], () => {
+//     resolve(
+//       require('./pages/Car')
+//     )
+//   })
+// }
+
 export default new VueRouter({
   routes: [
     {
@@ -22,9 +41,9 @@ export default new VueRouter({
           path: "/car/:id/full",
           component: CarFull,
           name: 'carFull',
-          beforeEnter(to, from, next) {
+          beforeEnter() {
+            /*to, from, next*/
             console.log("beforeEnter");
-            next()
           }
         }
       ]
